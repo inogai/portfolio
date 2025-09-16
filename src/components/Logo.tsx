@@ -14,8 +14,8 @@ export function Logo() {
         <path d="M12 0L15.09 8.91L24 12L15.09 15.09L12 24L8.91 15.09L0 12L8.91 8.91L12 0Z" />
       </svg>
       <div>
-        <span className="font-bold font-mono">inogai,</span>
-        <span className="text-muted-foreground text-sm font-light"> an HKUST Student</span>
+        <span className="font-mono font-bold">inogai,</span>
+        <span className="text-sm font-light text-muted-foreground"> an HKUST Student</span>
       </div>
     </Link>
   )

@@ -60,27 +60,35 @@ const categories = [
 
 function Credits() {
   return (
-    <main className="container bg-background mx-auto">
+    <main className="container mx-auto bg-background">
       <div className="container mx-auto px-4 py-8">
-        <h1 className="text-4xl font-bold mb-4">Credits</h1>
-        <p className="text-lg text-muted-foreground mb-8">
+        <h1 className="mb-4 text-4xl font-bold">Credits</h1>
+        <p className="mb-8 text-lg text-muted-foreground">
           This website is built with some of the best open-source tools available.
           A huge thanks to the creators and maintainers of these projects.
         </p>
         <div className="space-y-8">
           {categories.map(category => (
             <div key={category.name}>
-              <h2 className="text-3xl font-bold mb-4">{category.name}</h2>
-              <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+              <h2 className="mb-4 text-3xl font-bold">{category.name}</h2>
+              <div className={`
+                grid gap-4
+                md:grid-cols-2
+                lg:grid-cols-3
+              `}
+              >
                 {category.technologies.map(tech => (
                   <a
                     key={tech.name}
                     href={tech.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="block p-6 bg-card rounded-lg border hover:shadow-lg transition-shadow"
+                    className={`
+                      block rounded-lg border bg-card p-6 transition-shadow
+                      hover:shadow-lg
+                    `}
                   >
-                    <h3 className="text-2xl font-bold mb-2">{tech.name}</h3>
+                    <h3 className="mb-2 text-2xl font-bold">{tech.name}</h3>
                     <p className="text-muted-foreground">{tech.description}</p>
                   </a>
                 ))}

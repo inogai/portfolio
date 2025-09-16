@@ -6,9 +6,9 @@ import { Header } from '@/components/Header'
 
 export const Route = createRootRoute({
   component: () => (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex min-h-screen flex-col">
       <Header />
-      <main className="container mx-auto flex flex-col flex-grow">
+      <main className="container mx-auto flex flex-grow flex-col">
         <Outlet />
       </main>
       <TanstackDevtools
