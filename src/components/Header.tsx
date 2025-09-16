@@ -1,13 +1,20 @@
 import { Link } from '@tanstack/react-router'
 
-export default function Header() {
+import { Logo } from '@/components/Logo'
+
+export function Header() {
   return (
-    <header className="p-2 flex gap-2 bg-white text-black justify-between">
-      <nav className="flex flex-row">
-        <div className="px-2 font-bold">
-          <Link to="/">Home</Link>
-        </div>
-      </nav>
+    <header className="flex space-x-4 justify-between p-4 border-b">
+      <Logo />
+      <Link to="/" className="text-muted-foreground hover:text-foreground">
+        Home
+      </Link>
+
+      <div className="grow" />
+
+      <Link to="/credits" className="text-muted-foreground hover:text-foreground">
+        Credits
+      </Link>
     </header>
   )
 }
