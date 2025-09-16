@@ -1,5 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
 
+import { GitHubIcon } from '@/components/GithubIcon'
+
 export const Route = createFileRoute('/')({
   component: App,
 })
@@ -54,6 +56,22 @@ function App() {
             Frontend, Scripting and AI Agents.
             Dotfiles ricing.
           </p>
+
+          <div className={`
+            flex justify-center pt-4
+            md:h-0 md:justify-start
+          `}
+          >
+            <a
+              className="hover:opacity-50"
+              href="https://github.com/inogai"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              <span className="sr-only">View my GitHub profile</span>
+              <GitHubIcon />
+            </a>
+          </div>
         </div>
       </div>
     </div>
