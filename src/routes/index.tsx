@@ -11,7 +11,7 @@ function App() {
     <div
       className={`
         flex w-full grow flex-col justify-stretch bg-cover bg-center
-        md:flex-row md:bg-[url(/scene.jpg)]
+        md:flex-row md:bg-[url(@/scene.jpg)]
       `}
     >
       <div className={`
