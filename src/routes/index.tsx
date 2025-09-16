@@ -1,5 +1,4 @@
 import { createFileRoute } from '@tanstack/react-router'
-import logo from '../logo.svg'
 
 export const Route = createFileRoute('/')({
   component: App,
@@ -7,37 +6,21 @@ export const Route = createFileRoute('/')({
 
 function App() {
   return (
-    <div className="text-center">
-      <header className="min-h-screen flex flex-col items-center justify-center bg-[#282c34] text-white text-[calc(10px+2vmin)]">
-        <img
-          src={logo}
-          className="h-[40vmin] pointer-events-none animate-[spin_20s_linear_infinite]"
-          alt="logo"
-        />
-        <p>
-          Edit
-          {' '}
-          <code>src/routes/index.tsx</code>
-          {' '}
-          and save to reload.
+    <div className="flex grow flex-col md:flex-row items-center justify-center gap-8 md:gap-20">
+      <img
+        src="https://avatars.githubusercontent.com/u/29174058?v=4"
+        alt="icon"
+        className="w-48 h-48 md:w-96 md:h-96 rounded-full object-cover"
+      />
+      <div className="text-center md:text-left">
+        <h1 className="text-5xl md:text-8xl font-bold font-mono">inogai</h1>
+        <h2 className="text-2xl font-bold mt-4">I am Alex Chen and I do code.</h2>
+        <p className="mt-2 text-muted-foreground max-w-md">
+          Computer Engineering Student at HKUST.
+          Frontend, Scripting and AI Agents.
+          Dotfiles ricing.
         </p>
-        <a
-          className="text-[#61dafb] hover:underline"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <a
-          className="text-[#61dafb] hover:underline"
-          href="https://tanstack.com"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn TanStack
-        </a>
-      </header>
+      </div>
     </div>
   )
 }
