@@ -1,7 +1,8 @@
 import type { TimelineEvent } from '@/components/TimelineItem'
 
 import { createFileRoute } from '@tanstack/react-router'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { InView } from 'react-intersection-observer'
 import ReactMarkdown from 'react-markdown'
 
 import imgHkust from '@/assets/hkust.jpg'
@@ -108,46 +109,80 @@ export interface TimelineItemProps {
 }
 
 function RouteComponent() {
-  const [focusedId, setFocusedId] = useState('1')
+  const [focusedId, setFocusedId] = useState<string | null>(timelineEvents[0].id)
+  const [isProgrammaticScroll, setIsProgrammaticScroll] = useState(false)
   const focusedItem = timelineEvents.find(item => item.id === focusedId) || timelineEvents[0]
+
+  useEffect(() => {
+    if (focusedId && isProgrammaticScroll) {
+      const element = document.getElementById(`timeline-event-${focusedId}`)
+      element?.scrollIntoView({ behavior: 'smooth' })
+      // After the scroll animation, allow InView to take over.
+      const timer = setTimeout(() => setIsProgrammaticScroll(false), 1000) // Adjust time based on scroll duration
+      return () => clearTimeout(timer)
+    }
+  }, [focusedId, isProgrammaticScroll])
+
+  const handleItemClick = (id: string) => {
+    setFocusedId(id)
+    setIsProgrammaticScroll(true)
+  }
 
   return (
     <div className="relative h-[calc(100vh-var(--header-height))]">
       <div className={`
-        h-full snap-y snap-mandatory grid-cols-1 overflow-y-scroll
+        absolute inset-0 h-full snap-y snap-mandatory overflow-y-scroll
       `}
       >
-        <div
-          className="relative flex h-full items-stretch bg-cover bg-right"
-          style={{ backgroundImage: `url(${focusedItem.image})` }}
-        >
-          <div className="flex grow flex-col justify-stretch">
-            <div className="grow"></div>
+        {timelineEvents.map(event => (
+          <InView
+            as="div"
+            key={event.id}
+            id={`timeline-event-${event.id}`}
+            threshold={0.4}
+            className="h-full snap-start"
+            onChange={(inView) => {
+              if (inView && !isProgrammaticScroll) {
+                setFocusedId(event.id)
+              }
+            }}
+          >
+            <div
+              className="h-full bg-cover bg-right"
+              style={{ backgroundImage: `url(${event.image})` }}
+            />
+          </InView>
+        ))}
+      </div>
 
-            <div className={`
-              m-8 prose min-h-12 rounded-2xl bg-black/70 p-4 text-white
-              backdrop-blur-sm prose-invert
+      <div className="pointer-events-none absolute inset-0 flex items-stretch">
+        <div className="flex grow flex-col justify-stretch">
+          <div className="grow"></div>
+
+          <div
+            className={`
+              pointer-events-auto m-8 prose min-h-12 rounded-2xl bg-black/70 p-4
+              text-white backdrop-blur-sm prose-invert
             `}
-            >
-              <ReactMarkdown>{focusedItem.description}</ReactMarkdown>
-            </div>
+          >
+            <ReactMarkdown>{focusedItem.description}</ReactMarkdown>
           </div>
+        </div>
 
-          <div className="flex w-[300px] bg-black/80 pl-4">
-            <div className="relative flex flex-col gap-y-2 py-8">
-              <div
-                className="absolute top-0 left-4 z-10 h-full w-0.5 bg-muted"
-                aria-hidden="true"
+        <div className="pointer-events-auto flex w-[300px] bg-black/80 pl-4">
+          <div className="relative flex flex-col gap-y-2 py-8">
+            <div
+              className="absolute top-0 left-4 z-10 h-full w-0.5 bg-muted"
+              aria-hidden="true"
+            />
+            {timelineEvents.map(item => (
+              <TimelineItem
+                key={item.id}
+                event={item}
+                isFocused={focusedItem.id === item.id}
+                onClick={() => handleItemClick(item.id)}
               />
-              {timelineEvents.map(item => (
-                <TimelineItem
-                  key={item.id}
-                  event={item}
-                  isFocused={focusedItem.id === item.id}
-                  onClick={() => setFocusedId(item.id)}
-                />
-              ))}
-            </div>
+            ))}
           </div>
         </div>
       </div>
