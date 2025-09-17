@@ -5,7 +5,9 @@ import { useEffect, useState } from 'react'
 import { InView } from 'react-intersection-observer'
 import ReactMarkdown from 'react-markdown'
 
+import imgHkt from '@/assets/hkt.jpg'
 import imgHkust from '@/assets/hkust.jpg'
+import imgSmartCurtain from '@/assets/smart-curtain.jpg'
 import { TimelineItem } from '@/components/TimelineItem'
 
 export const Route = createFileRoute('/timeline')({
@@ -27,6 +29,21 @@ Image Credits: HKUST
     category: 'Education',
   },
   {
+    id: '5',
+    date: 'June 2024 - August 2024',
+    title: 'Field Operations Intern',
+    subtitle: 'HKT Limited',
+    description: `
+### Field Operations Intern at HKT Limited
+
+- Created 20 python scripts to automate the process of data collection and analysis.
+- Created a web portal for the team to query the location and spec of devices.
+- Created another web portal for the team to manage stock items.
+`,
+    image: imgHkt,
+    category: 'Work Experience',
+  },
+  {
     id: '2',
     date: 'Fall 2024-25',
     title: 'Elec3300 - Smart Curtain',
@@ -39,9 +56,24 @@ This project involved designing and implementing a smart curtain system that can
 - STM32 Micro-controller
 - Mobile app using React Native + Expo
 - Bluetooth communication based on HC-05 module
+
+[Link to Companion App Repo](https://github.com/inogai/3300SmartCurtain-companion#)
 `,
-    image: imgHkust,
+    image: imgSmartCurtain,
     category: 'Academic Projects',
+  },
+  {
+    id: '6',
+    date: 'November 2024 - March 2025',
+    title: 'Associate Engineer',
+    subtitle: 'HKT Limited',
+    description: `
+### Associate Engineer at HKT Limited
+
+Assisted in software development and system design projects.
+`,
+    image: imgHkt,
+    category: 'Work Experience',
   },
   {
     id: '3',
@@ -63,7 +95,7 @@ This project involved designing and implementing a smart curtain system that can
     id: '4',
     date: 'Spring 2024-25',
     title: 'Comp4211 - NER Tagging Model',
-    subtitle: 'Fine-tuning a BERT model to tag NER in a given text',
+    subtitle: 'Fine-tune a BERT model',
     description: `
 ### NER Tagging Model
 
@@ -71,34 +103,6 @@ Fine-tuning a BERT model to tag NER in a given text.
 `,
     image: imgHkust,
     category: 'Academic Projects',
-  },
-  {
-    id: '5',
-    date: 'June 2024 - August 2024',
-    title: 'Field Operations Intern',
-    subtitle: 'HKT Limited',
-    description: `
-### Field Operations Intern at HKT Limited
-
-- Created 20 python scripts to automate the process of data collection and analysis.
-- Created a web portal for the team to query the location and spec of devices.
-- Created another web portal for the team to manage stock items.
-`,
-    image: imgHkust,
-    category: 'Work Experience',
-  },
-  {
-    id: '6',
-    date: 'November 2024 - March 2025',
-    title: 'Associate Engineer',
-    subtitle: 'HKT Limited',
-    description: `
-### Associate Engineer at HKT Limited
-
-Assisted in software development and system design projects.
-`,
-    image: imgHkust,
-    category: 'Work Experience',
   },
 ]
 
