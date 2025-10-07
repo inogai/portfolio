@@ -12,7 +12,7 @@ import './styles.css'
 const router = createRouter({
   routeTree,
   context: {},
-  basepath: '/portfolio/',
+  basepath: '/',
   defaultPreload: 'intent',
   scrollRestoration: true,
   defaultStructuralSharing: true,
